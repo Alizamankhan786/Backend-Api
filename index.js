@@ -1,22 +1,25 @@
 // const express = require('express')
-<<<<<<< HEAD
-import express from "express";
-=======
-import express, { json } from "express";
->>>>>>> 3f0913d (apis done)
+import dotenv from "dotenv";
+import cors from 'cors';
+dotenv.config();
+import express from "express"
+// const cors = require('cors')
 const app = express()
-const port = 3000
+const port = process.env.PORT 
+
+
 
 app.get('/', (req, res) => {
-  res.send('Hello World!')
-})
+    res.send('Hello World!')
+});
 
-<<<<<<< HEAD
-app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`)
-})
-=======
+// Middle Ware
 
+app.use(express.json());
+app.use(cors());
+
+
+const users = [];
 
 //Add Users
 
@@ -59,8 +62,18 @@ app.get("/users" , (req , res) => {
     });
 });
 
+// Get All User
+
+app.get("users" , (req , res)=> {
+    res.status(200).json({
+        data: users,
+    });
+
+});
+
+
+
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
 });
->>>>>>> 3f0913d (apis done)
